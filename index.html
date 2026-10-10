@@ -43,6 +43,19 @@
       <div class="photo-fallback" id="photoFallback"></div>
     </div>
   </div>
+  <style>
+    .photo{
+  position:relative;
+  width:320px;
+  height:320px;
+  border-radius:50%;      /* makes it a circle */
+  object-fit:cover;       /* fills the circle without stretching */
+  object-position:50% 20%;/* centers the face; see below to adjust */
+  border:5px solid var(--card);
+  background:var(--card2);
+  display:block;
+}
+  </style>
 </header>
 
 <section id="about">

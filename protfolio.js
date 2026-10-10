@@ -13,7 +13,11 @@ const SITE = {
   //   photo: "my-photo.jpg"
   // Or use a full path / online link:
   //   photo: "images/me.png"   or   photo: "https://example.com/me.jpg"
-  photo: "profile.jpg",
+  // photo: "profile.jpg",
+  // photo: "profile.jpg",
+
+photo: "Robin.jpeg",
+
 
   // 📄 CV FILE — put your CV (PDF) in the same folder and write its name here
   cv: "my-cv.pdf",

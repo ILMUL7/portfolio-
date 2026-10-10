@@ -41,7 +41,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .socials a:hover{color:var(--text);border-color:var(--accent)}
 .photo-wrap{position:relative;justify-self:center}
 .photo-wrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));filter:blur(28px);opacity:.45}
-.photo{position:relative;width:320px;height:320px;border-radius:50%;object-fit:cover;border:5px solid var(--card);background:var(--card2);display:block}
+.photo{position:relative;width:320px;height:320px;object-fit:cover;border:5px solid var(--card);background:var(--card2);display:block}
 .photo-fallback{position:relative;width:320px;height:320px;border-radius:50%;display:none;align-items:center;justify-content:center;font-size:5rem;font-weight:800;background:var(--card2);border:5px solid var(--card);color:var(--accent)}
 
 /* SECTIONS */

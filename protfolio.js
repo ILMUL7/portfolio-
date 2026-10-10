@@ -1,0 +1,156 @@
+/* =====================================================================
+   ✏️  EDIT ONLY THIS BLOCK — everything on the website comes from here
+   ===================================================================== */
+const SITE = {
+
+  name: "Sabbir Hossain Robin",
+  logoShort: "YN",                       // shown in the top-left corner
+  title: "Web Developer & Designer — I build clean, fast and user-friendly digital products.",
+  availability: "Available for work",
+
+  // 📸 PROFILE PICTURE — change this link to your own image.
+  // Easiest: put your photo in the SAME folder as this file and write its name:
+  //   photo: "my-photo.jpg"
+  // Or use a full path / online link:
+  //   photo: "images/me.png"   or   photo: "https://example.com/me.jpg"
+  photo: "profile.jpg",
+
+  // 📄 CV FILE — put your CV (PDF) in the same folder and write its name here
+  cv: "my-cv.pdf",
+
+  about: [
+    "I'm a passionate professional with experience in building modern websites and applications. I enjoy turning ideas into polished, working products.",
+    "Write a second paragraph here about your background, what motivates you, and what kind of work you are looking for."
+  ],
+
+  stats: [
+    { value: "3+",  label: "Years experience" },
+    { value: "20+", label: "Projects done" },
+    { value: "10+", label: "Happy clients" },
+    { value: "5",   label: "Certifications" }
+  ],
+
+  skills: ["HTML", "CSS", "JavaScript", "React", "Node.js", "Python", "Figma", "Git", "SQL", "Communication"],
+
+  // 🚀 PROJECTS — copy one block { ... }, paste it below, and edit it to add a project.
+  // image: put a screenshot in the folder and write its name (or leave "" for a colored card)
+  projects: [
+    {
+      title: "Project One",
+      description: "A short description of what this project does and the problem it solves.",
+      image: "",                         // e.g. "project1.png"
+      tags: ["HTML", "CSS", "JavaScript"],
+      live: "#",                         // link to live demo ("" to hide)
+      code: "#"                          // link to source code, e.g. GitHub ("" to hide)
+    },
+    {
+      title: "Project Two",
+      description: "Describe your second project here. Mention technologies used and your role.",
+      image: "",
+      tags: ["React", "API"],
+      live: "#",
+      code: "#"
+    },
+    {
+      title: "Project Three",
+      description: "Another project example. Replace this text with your own details.",
+      image: "",
+      tags: ["Python", "Data"],
+      live: "",
+      code: "#"
+    }
+  ],
+
+  experience: [
+    { date: "2024 – Present", role: "Job Title", org: "Company Name", desc: "What you did there, key achievements and results." },
+    { date: "2022 – 2024",    role: "Previous Role", org: "Another Company", desc: "Short summary of your responsibilities." }
+  ],
+
+  education: [
+    { date: "2018 – 2022", role: "Bachelor's Degree in Your Subject", org: "Your University", desc: "CGPA / honors / thesis topic (optional)." },
+    { date: "2016 – 2018", role: "Higher Secondary Certificate",      org: "Your College",    desc: "" }
+  ],
+
+  contact: {
+    text: "I'm open to new opportunities and collaborations. Feel free to reach out — I'll reply as soon as I can.",
+    email: "you@example.com",
+    phone: "+880 1XXX-XXXXXX",
+    location: "Dhaka, Bangladesh"
+  },
+
+  // Social links — delete any line you don't need
+  socials: [
+    { label: "LinkedIn", url: "https://linkedin.com/in/yourname" },
+    { label: "GitHub",   url: "https://github.com/yourname" },
+    { label: "Facebook", url: "https://facebook.com/yourname" }
+  ]
+};
+/* ===================================================================== */
+
+
+/* ---------- Build the page (no need to edit below) ---------- */
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+document.title = SITE.name + " — Portfolio";
+$("navLogo").innerHTML = esc(SITE.logoShort).replace(/^(.)/, "$1<span>") + "</span>";
+$("heroName").textContent = SITE.name;
+$("heroTitle").textContent = SITE.title;
+$("availability").textContent = SITE.availability;
+$("cvBtn").href = SITE.cv;
+
+// Profile photo with fallback to initials if the file isn't found
+const photo = $("photo"), fb = $("photoFallback");
+photo.src = SITE.photo;
+photo.onerror = () => { photo.style.display = "none"; fb.style.display = "flex"; fb.textContent = SITE.logoShort; };
+
+$("aboutText").innerHTML = SITE.about.map(p => `<p>${esc(p)}</p>`).join("");
+$("stats").innerHTML = SITE.stats.map(s => `<div class="stat"><b>${esc(s.value)}</b><span>${esc(s.label)}</span></div>`).join("");
+$("skillsList").innerHTML = SITE.skills.map(s => `<span class="skill">${esc(s)}</span>`).join("");
+
+$("projectsList").innerHTML = SITE.projects.map((p, i) => `
+  <article class="project reveal">
+    <div class="thumb">${p.image ? `<img src="${esc(p.image)}" alt="${esc(p.title)}" onerror="this.parentNode.textContent='📁'">` : "📁"}</div>
+    <div class="body">
+      <h3>${esc(p.title)}</h3>
+      <p>${esc(p.description)}</p>
+      <div class="tags">${(p.tags||[]).map(t => `<span>${esc(t)}</span>`).join("")}</div>
+      <div class="plinks">
+        ${p.live ? `<a href="${esc(p.live)}" target="_blank" rel="noopener">Live demo ↗</a>` : ""}
+        ${p.code ? `<a href="${esc(p.code)}" target="_blank" rel="noopener">Source code ↗</a>` : ""}
+      </div>
+    </div>
+  </article>`).join("");
+
+const tl = arr => arr.map(e => `
+  <div class="t-item">
+    <div class="date">${esc(e.date)}</div>
+    <h3>${esc(e.role)}</h3>
+    <div class="org">${esc(e.org)}</div>
+    ${e.desc ? `<p>${esc(e.desc)}</p>` : ""}
+  </div>`).join("");
+$("expList").innerHTML = tl(SITE.experience);
+$("eduList").innerHTML = tl(SITE.education);
+
+$("contactText").textContent = SITE.contact.text;
+$("emailBtn").href = "mailto:" + SITE.contact.email;
+$("contactInfo").innerHTML = `<span>📧 ${esc(SITE.contact.email)}</span><span>📞 ${esc(SITE.contact.phone)}</span><span>📍 ${esc(SITE.contact.location)}</span>`;
+$("socials").innerHTML = SITE.socials.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join("");
+$("footerText").textContent = `© ${new Date().getFullYear()} ${SITE.name}. All rights reserved.`;
+
+// Theme toggle (remembers choice)
+const themeBtn = $("themeBtn");
+try { if (localStorage.getItem("theme") === "light") { document.body.classList.add("light"); themeBtn.textContent = "☀️"; } } catch(e){}
+themeBtn.onclick = () => {
+  const light = document.body.classList.toggle("light");
+  themeBtn.textContent = light ? "☀️" : "🌙";
+  try { localStorage.setItem("theme", light ? "light" : "dark"); } catch(e){}
+};
+
+// Mobile menu
+$("menuBtn").onclick = () => $("navLinks").classList.toggle("open");
+document.querySelectorAll("#navLinks a").forEach(a => a.onclick = () => $("navLinks").classList.remove("open"));
+
+// Scroll reveal animation
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("show"); io.unobserve(e.target); } }), { threshold: .12 });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
